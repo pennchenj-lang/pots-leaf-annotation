@@ -1,0 +1,10 @@
+{
+  "format": "POTSENC1",
+  "kdf": "PBKDF2-SHA256",
+  "iterations": 600000,
+  "saltBase64": "cp3UT7CXdFbK/YWsqsfRAqH424W7XPR65MTKc+oLPfU=",
+  "cipher": "AES-256-GCM",
+  "headerBytes": 8,
+  "ivBytes": 12,
+  "tagBytes": 16
+}

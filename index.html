@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>逐组标注同一片叶子</title><link rel="stylesheet" href="./style.css"></head>
+<body><main>
+<header><div><p class="eyebrow">POTS · 云端标注 · 从 G15 开始</p><h1>在不同照片中，找到同一片叶子</h1><p class="intro">照片由云端提供，无需分享者的电脑开机联网。标注保存在你自己的电脑，完成后导出文件发回。</p></div><a id="backup" class="backup" href="#" hidden>下载标注文件</a></header>
+<section id="unlockPanel" class="unlock-panel"><h2>输入访问密码，开始标注</h2><p>使用分享者提供的密码打开照片。已有标注可在进入后导入。</p><form id="unlockForm"><label for="cloudPassword">访问密码</label><div class="unlock-controls"><input id="cloudPassword" type="password" autocomplete="current-password" maxlength="256" required><button id="unlockButton" class="primary" type="submit">进入标注页面</button></div><p id="unlockError" class="error" role="alert" hidden></p></form><small>照片以加密文件存放在云端；密码仅用于当前浏览器解锁，不会上传。刷新页面需重新输入密码，已保存进度会保留。</small></section>
+<div id="loading" class="notice" hidden>正在读取照片与上次进度…</div>
+<div id="workspace" hidden>
+<section class="storagebar"><div><strong>把标注保存在你自己的电脑</strong><p>首次点“选择保存文件夹”，在桌面新建一个标注文件夹并授权。之后每次修改会自动更新其中的 JSON 文件；完成后把它发回即可。</p><span id="directoryStatus" role="status">尚未选择文件夹：进度仅保存在当前浏览器，建议随时下载备份。</span></div><div class="storageactions"><button id="chooseDirectory" class="primary">选择桌面保存文件夹</button><button id="resumeDirectory" hidden>恢复文件夹授权</button><button id="importBackup">导入已有标注文件</button><input id="importFile" type="file" accept=".json,application/json" hidden></div></section>
+<section class="groupbar"><div><strong id="groupTitle"></strong><span id="groupMeta" class="muted"></span></div><div class="groupnav"><label>范围 <select id="sourceFilter"><option value="all">全部可标组</option><option value="self">自采照片</option><option value="public">公共照片</option></select></label><label>跳到 <select id="groupJump" aria-label="跳到指定组"></select></label></div></section>
+<section class="progressline"><span id="progress"></span><span id="saveStatus" role="status" aria-live="polite">等待标注</span></section>
+<section class="toolbar"><div class="leafbar"><span>正在标：</span><div id="leafTabs" role="group" aria-label="叶片编号"></div><button id="addLeaf" class="subtle">＋ 再标一片叶</button></div><div class="editbar"><button id="undo" class="subtle" title="Ctrl / ⌘ + Z">撤销</button><button id="deleteLeaf" class="subtle danger">删除当前叶</button></div></section>
+<div class="instruction" id="instruction">点击同一片叶子的可见部分即可。编号相同表示同一片叶，不要求点在叶子的同一物理位置。</div>
+<details class="advanced"><summary>可选：叶尖、叶基与可见叶缘</summary><div class="tools" id="tools" role="group" aria-label="标注工具"><button data-tool="anchor" class="active">同叶定位</button><button data-tool="T">叶尖 T</button><button data-tool="B">叶基 B</button><button data-tool="outline">可见叶缘</button><button data-tool="pan">只移动图片</button></div><p class="muted">T 是叶尖，B 是叶身与叶柄相接的位置；只标看得清的位置，不猜遮挡点。叶缘仅描一段连续可见部分，遇遮挡就停止，不会自动闭合。这些补充不是完成本组的必要条件。</p></details>
+<section id="views" class="views" aria-label="同组照片"></section>
+<section class="review"><label class="confirm"><input id="confirm" type="checkbox"><span>我确认：相同编号对应同一片叶子，已标在至少两张照片中。</span></label><div id="completionHint" class="muted"></div><label class="note">备注（可不填）<textarea id="note" rows="2" placeholder="例如：第三张图被前叶挡住，或某片叶的对应关系不确定"></textarea></label></section>
+<footer><div><button id="previous">上一组</button><button id="saveDraft">暂存本组</button><button id="skip" class="subtle">暂时跳过</button></div><button id="next" class="primary">保存并下一组 →</button></footer>
+<p class="footnote">标注不会上传到云端。刷新并输入密码后可继续；更换浏览器或电脑时，请先下载文件，再导入恢复。若未授权文件夹，下载文件通常位于浏览器设置的下载目录。叶片身份点不是跨视图同一物理点，也不直接代表三维重建通过。</p>
+</div><div id="toast" role="alert" hidden></div>
+<p class="footnote"><a href="./sources.html" target="_blank" rel="noopener">图片来源与许可</a></p>
+</main><script src="./crypto.js"></script><script src="./app.js"></script></body></html>
